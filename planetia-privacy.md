@@ -23,23 +23,23 @@ Planetia can be played using locally stored game data. Some optional or platform
 
 The Game stores information such as settings, preferences, progress, saved planets, presets, and user-created content on your device. Photos, videos, and other files you choose to export are saved to the location supported or selected by your device. These files are not automatically sent to us merely because you create or export them.
 
-If you use Planetia's **Google Play Games cloud-save features**, eligible saved-game data and related metadata may be transmitted to, stored by, and retrieved from Google's services so that you can synchronize or recover your progress. Cloud-save data may contain names or other content you choose to include in your creations.
+On supported Android devices, Planetia attempts to connect to **Google Play Games Services**. You can play without a Play Games connection. While connected, **Cloud Save automatically synchronizes eligible committed saves** with Google Saved Games for your game account. This can include saved planet contents and names, planet preview thumbnails, user-created planet/biome/ocean presets, and Agency, Daily, or Custom challenge progress. The current Cloud Save system does not mirror Sandbox autosaves, trial sessions, purchase records, device settings, or exported videos. Please avoid including sensitive personal information in creation names or other content you choose to save in the cloud.
 
 ### Google Play Games Services
 
-When you use Google Play Games features, Google may process information associated with your Play Games profile, such as a player identifier and display name, together with achievements, gameplay statistics, and cloud-save information. Planetia uses the information made available by Google Play Games to provide the relevant features. Your broader Google account information is managed by Google under its own terms and privacy policy.
+When connected, Google Play Games may process information associated with your Play Games profile, such as a game-scoped player identifier and display name, together with achievements, gameplay statistics, cloud-save information, and service diagnostics. Planetia uses the information made available by Google Play Games to provide the relevant features. Google Play Games operates separately from Planetia's optional Firebase reporting preference. Your broader Google account information is managed by Google under its own terms and privacy policy.
 
 ### Purchases
 
 Optional in-app purchases are processed through **Google Play Billing**. To deliver and restore purchased content, the Game may handle information such as purchased product identifiers, purchase status, purchase tokens, and associated entitlements. Payment-card and other payment-method details are handled by Google; Planetia does not ask you to enter them into the Game.
 
-### Optional usage analytics
+### Optional usage analytics and crash reporting
 
-Planetia includes **Google Analytics for Firebase** to help us understand how the Game is used and improve its reliability and design. Analytics collection is intended to operate subject to your choice in the Game's privacy or analytics settings.
+Planetia includes **Google Analytics for Firebase** and **Firebase Crashlytics** to help us understand how the Game is used, investigate crashes and errors, and improve its reliability and design. The Game's reporting preference is **off by default**. You can enable or disable this optional reporting in Settings.
 
-When enabled, analytics may include gameplay events, interactions, session and engagement information, app version, device or operating-system characteristics, and identifiers used by Firebase or Google Analytics to associate events with an app installation. The exact identifiers and device information depend on the SDK configuration and your device or platform settings.
+When enabled, these services may receive gameplay events and interactions, app lifecycle and purchase events, session or engagement information, performance measurements, crash reports and exception details, app version, device or operating-system characteristics, and SDK identifiers. Planetia associates reports with a randomly generated **Feedback ID**. Google Analytics may also infer an approximate location from network information. Planetia's authored reporting hooks are designed to use bounded event categories and built-in content identifiers rather than names of user-created worlds, typed searches, or raw Google Play Games account identifiers.
 
-You can change your analytics preference in the Game's settings. Disabling analytics stops future optional analytics collection as implemented by the Game, but does not necessarily remove information already processed by Google. To ask about deletion of information associated with your use of Planetia, contact us using the address above.
+Disabling reporting stops further optional Firebase Analytics and Crashlytics collection through the Game's configured controls, but does not necessarily delete information already uploaded. Some crash information retained locally may be uploaded if you enable reporting later. Firebase dependency initialization may still occur even while reporting is disabled, and this preference does not disable separate Google Play Games or Google Play Billing processing. To ask about information associated with your use of Planetia, contact us using the address above; a Feedback ID may help us identify relevant diagnostic records.
 
 ### Platform diagnostics
 
@@ -66,6 +66,7 @@ Planetia uses the following Google services, depending on which features you ena
 | Google Play Games Services | Player-related game features, achievements, statistics, and cloud saves |
 | Google Play Billing | Processing and verifying in-app purchases |
 | Google Analytics for Firebase | Optional usage and engagement analytics |
+| Firebase Crashlytics | Optional crash reports and technical diagnostics |
 | Google Play / Android platform services | App distribution, updates, and platform diagnostics |
 
 These services may process information on Google's infrastructure and under applicable Google terms. We do not sell personal information, and **Planetia does not display advertisements**.
@@ -75,9 +76,9 @@ You can learn about Google's handling of data at [Google's Privacy Policy](https
 ## 4. Data storage and retention
 
 - **Local data** stays on your device until you delete it, reset relevant settings, or remove the Game, subject to any device-level backups you have enabled.
-- **Cloud saves** are kept through Google Play Games according to the cloud-save feature and Google's applicable policies until you delete them or otherwise arrange for their removal.
+- **Cloud saves** are kept through Google Play Games according to the cloud-save feature and Google's applicable policies. Deleting a locally saved world or preset can queue an account-scoped cloud deletion, including while offline. After the Game reconnects and confirms the change, obsolete cloud payloads are removed when safe. Minimal technical deletion or synchronization markers, and versions involved in unresolved conflicts, may remain to prevent an older device from silently recreating deleted data. Removing the Game or disconnecting Play Games does not by itself erase cloud saves.
 - **Purchases** and related transaction records may be retained by Google or us where necessary for purchase restoration, dispute handling, fraud prevention, or legal obligations.
-- **Analytics information**, where collected, is retained in accordance with the retention configuration of the associated Google Analytics property and relevant Google service policies.
+- **Analytics and crash information**, where collected, is retained in accordance with the retention configuration of the associated Google Analytics property, Firebase Crashlytics retention practices, and relevant Google service policies.
 
 Information may be retained for longer where required by applicable law or to resolve a legitimate dispute, and is otherwise deleted or de-identified when no longer needed for its stated purpose.
 
@@ -86,8 +87,8 @@ Information may be retained for longer where required by applicable law or to re
 Depending on your device and available Game features, you can:
 
 - Manage or remove local saved data within Planetia.
-- Use the Game's cloud-save management controls to manage eligible Google Play Games saves.
-- Change the optional analytics preference in Planetia's settings.
+- Use the Game's cloud-save management controls to review eligible Google Play Games saves and resolve conflicts. Deleting a document does not necessarily delete technical synchronization markers or every Google-held account record. An **Apply Deletion** action on another device may move its local copy into a recoverable local archive rather than permanently destroying that local copy.
+- Change the optional Firebase analytics and crash-reporting preference in Planetia's settings.
 - Manage your Google Play Games profile and related account settings through Google.
 - Contact us at [hollowmindedmakers@gmail.com](mailto:hollowmindedmakers@gmail.com) to ask about access to, correction of, or deletion of information related to Planetia.
 
